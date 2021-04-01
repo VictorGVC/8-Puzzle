@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -21,8 +22,11 @@
          <children>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="405.0" spacing="50.0" styleClass="forth">
                <children>
-                  <JFXRadioButton fx:id="rbAlg1" text="Algoritmo 1" />
-                  <JFXRadioButton fx:id="rbAlg2" text="Algoritmo 2" />
+                  <JFXRadioButton fx:id="rbAlg1" text="Algoritmo 1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="group" />
+                     </toggleGroup></JFXRadioButton>
+                  <JFXRadioButton fx:id="rbAlg2" text="Algoritmo 2" toggleGroup="$group" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
@@ -51,15 +55,15 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="im00" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="im01" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                              <ImageView fx:id="im02" fitHeight="69.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                              <ImageView fx:id="im10" fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im11" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im12" fitHeight="67.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im20" fitHeight="66.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-                              <ImageView fx:id="im21" fitHeight="67.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <ImageView fx:id="im22" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im00" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" />
+                              <ImageView fx:id="im01" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="1" />
+                              <ImageView fx:id="im02" fitHeight="69.0" fitWidth="69.0" pickOnBounds="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="im10" fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im11" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im12" fitHeight="67.0" fitWidth="69.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im20" fitHeight="66.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im21" fitHeight="67.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im22" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <Label layoutX="128.0" layoutY="50.0" prefHeight="21.0" prefWidth="69.0" styleClass="labeli" text="8-Puzzle" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="50.0">
