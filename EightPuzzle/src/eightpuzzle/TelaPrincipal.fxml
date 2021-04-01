@@ -22,7 +22,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="405.0" spacing="50.0" styleClass="forth">
                <children>
-                  <JFXRadioButton fx:id="rbAlg1" text="Algoritmo 1">
+                  <JFXRadioButton fx:id="rbAlg1" selected="true" text="Algoritmo 1">
                      <toggleGroup>
                         <ToggleGroup fx:id="group" />
                      </toggleGroup></JFXRadioButton>
@@ -77,8 +77,8 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="403.0" spacing="50.0" styleClass="forth">
                <children>
-                  <JFXButton fx:id="btEmbaralhar" text="Embaralhar" />
-                  <JFXButton fx:id="evtResolver" text="Resolver" />
+                  <JFXButton fx:id="btEmbaralhar" onAction="#evtEmbaralhar" text="Embaralhar" />
+                  <JFXButton fx:id="evtResolver" onAction="#evtResolver" text="Resolver" />
                </children>
             </VBox>
          </children>
