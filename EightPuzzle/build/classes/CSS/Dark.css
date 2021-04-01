@@ -1,0 +1,138 @@
+ .split-pane:vertical > .split-pane-divider {
+    -fx-background-color: transparent;
+ }
+
+ .split-pane
+ {
+    -fx-background-color:  #042f38;
+ }
+
+ .table-view
+ {
+    -fx-background-color:  #8fcfcf;
+ }
+
+ .jfx-date-picker .date-picker-popup .calendar-grid .day-cell:hover,
+.jfx-date-picker .data-picker-list-cell:hover {
+    -fx-background-color: #50bfcf;
+    -fx-cursor: hand;
+}
+
+.jfx-date-picker .date-picker-popup
+{
+   -fx-background-color: #55cfcf;
+}
+
+.jfx-date-picker
+{
+   -jfx-default-color: rgb(13, 164, 175);
+}
+
+
+.table-view .column-header
+{
+   -fx-background-color: black;
+   
+}
+
+.table-view .column-header .label
+{
+   -fx-text-fill : #8fcfcf;
+}
+
+.jfx-text-field 
+{
+   -jfx-unfocus-color : #8fcfcf;
+   -jfx-focus-color: #4059a9;
+   -fx-prompt-text-fill: #8fcfcf;
+   -fx-text-inner-color: #8fcfcf;
+   -fx-highlight-fill: #8fcfcf;
+}
+
+.jfx-password-field 
+{
+   -jfx-focus-color: #4059a9;
+   -jfx-unfocus-color : #8fcfcf;
+   -fx-prompt-text-fill: #8fcfcf;
+   -fx-text-inner-color: #8fcfcf;
+   -fx-highlight-fill: #8fcfcf;
+}
+
+.jfx-combo-box
+{
+   -jfx-focus-color: #4059a9;
+   -jfx-unfocus-color : #8fcfcf;
+   -fx-prompt-text-fill: #8fcfcf;
+   -fx-text-inner-color: #8fcfcf;
+}
+
+.jfx-button
+{
+   -fx-text-fill : #8fcfcf;
+}
+
+.anchor-pane
+{
+   -fx-background-color:  #042f38;
+}
+
+#filtro
+{
+   -fx-background-radius: 13;
+   -fx-border-radius: 13;
+   -fx-border-width: 1;
+   -fx-background-color: #1e535d;
+   -fx-border-color: #03afc5;
+}
+
+.default
+{
+   -fx-background-color:  #042f38;
+}
+
+.secundary
+{
+   -fx-background-color: #8fcfcf;
+}
+
+.third
+{
+   -fx-background-color: #578d8d;
+}
+
+.forth
+{
+   -fx-background-color: #1e535d;
+}
+
+.labeli
+{
+   -fx-text-fill: #8fcfcf;
+}
+
+.menu .label
+{
+    -fx-text-fill: #8fcfcf;
+}
+
+.menu
+{
+    -fx-background-color: #1e535d;
+    -fx-border-color: #1e535d;
+}
+
+.menu .menu-item
+{
+    -fx-background-color: #1e535d;
+    
+}
+
+.menu .menu-item:hover
+{
+    -fx-background-color: #042f38;
+}
+
+.jfx-radio-button
+{  
+   -fx-text-fill: #8fcfcf;
+}
