@@ -29,7 +29,8 @@ import javafx.stage.Stage;
  * @author vicga
  */
 public class TelaPrincipalController implements Initializable {
-
+    
+    private int lista[];
     private ArrayList imagemLista;
     static public File arq = null;
     private File arquivo;
@@ -81,22 +82,39 @@ public class TelaPrincipalController implements Initializable {
            imagemLista = new ArrayList();
            arquivo = arq;
            img = new Image(arq.toURI().toString());
+           System.out.println(arq.toURI().toString());
            imagemLista = Transformacoes.Recortar(img);
            for(int i =0; i<9;i++)
            {
-               
                 imageview = (ImageView)gpimage.getChildren().get(i);
                 imageview.setImage((Image)imagemLista.get(i));
-                imageview.setFitWidth(67);
-                imageview.setFitHeight(67);
+                imageview.setFitWidth(60);
+                imageview.setFitHeight(60);
            }
 
         }
         
     }
+    @FXML
+    private void evtEmbaralhar(ActionEvent event)
+    {
+        ImageView imageview = new ImageView();
+        lista = Funcoes.Transformacoes.Embaralhar(12);
+        for(int i=1;i<=9;i++)
+        {
+            imageview = (ImageView)gpimage.getChildren().get(i-1);
+            imageview.setImage((Image)imagemLista.get(lista[i]-1));
+            imageview.setFitWidth(60);
+            imageview.setFitHeight(60);
+        }
+    }
 
     @FXML
     private void evtLimpar(ActionEvent event) {
+    }
+
+    @FXML
+    private void evtResolver(ActionEvent event) {
     }
 }
 

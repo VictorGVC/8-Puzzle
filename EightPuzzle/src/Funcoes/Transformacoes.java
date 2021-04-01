@@ -83,4 +83,107 @@ public class Transformacoes {
         }
         return SwingFXUtils.toFXImage(bimage, null);
     }
+    public static int[] Embaralhar(int movimentos){
+        int lista[] = {9,1,2,3,4,5,6,7,8,9};
+        for(int i =0;i<movimentos;i++)
+        {
+            lista = fazerMovimento(lista);
+        }
+        
+        return lista;
+        
+    }
+    private static int[] fazerMovimento(int lista[]){ 
+        int vazia = lista[0];
+        int aux;
+        int random;
+        System.out.print(vazia + " para ");
+        switch(vazia){
+            case 1:
+                   random = (int)(Math.random()*2)%2 + 1;
+                   aux = lista[vazia];
+                   lista[vazia] = lista[random*2];
+                   lista[random*2] = aux;
+                   lista[0] = random*2;
+                   break;
+            case 2:
+                   random = (int)(Math.random()*3)%3;
+                   aux = lista[vazia];
+                   lista[vazia] = lista[random*2+1];
+                   lista[random*2+1] = aux;
+                   lista[0] = random*2+1;
+                   break;
+            case 3:
+                    random = (int)(Math.random()*2)%2;
+                    aux = lista[vazia];
+                    lista[vazia] = lista[random*4+2];
+                    lista[random*4+2] = aux;
+                    lista[0] = random*4+2;
+                    break;
+            case 4:
+                    random = (int)(Math.random()*3)%3;
+                    aux = lista[vazia];
+                    if(random == 0)
+                    {
+                        lista[vazia] = lista[1];
+                        lista[1] = aux;
+                        lista[0] = 1;
+                    }
+                    else
+                    {
+                        lista[vazia] = lista[random*2+3];
+                        lista[random*2+3] = aux;
+                        lista[0] = random*2+3;
+                    }
+
+                    break;
+            case 5:
+                    random = (int)(Math.random()*4)%4;
+                    aux = lista[vazia];
+                    lista[vazia] = lista[random*2+2];
+                    lista[random*2+2] = aux;
+                    lista[0] = random*2+2;
+                    break;
+            case 6:
+                    random = (int)(Math.random()*3)%3;
+                    aux = lista[vazia];
+                    if(random == 0)
+                    {
+                        lista[vazia] = lista[9];
+                        lista[9] = aux;
+                        lista[0] = 9;
+                    }
+                    else
+                    {
+                        lista[vazia] = lista[random*2+1];
+                        lista[random*2+1] = aux;
+                        lista[0] = random*2+1;
+                    }
+                    break;
+            case 7:
+                    random = (int)(Math.random()*2)%2+1;
+                    aux = lista[vazia];
+                    lista[vazia] = lista[random*4];
+                    lista[random*4] = aux;
+                    lista[0] = random*4;
+                    break;
+            case 8:
+                    random = (int)(Math.random()*3)%3+1;
+                    aux = lista[vazia];
+                    lista[vazia] = lista[random*2+3];
+                    lista[random*2+3] = aux;
+                    lista[0] = random*2+3;
+                    break;
+            case 9:
+                    random = (int)(Math.random()*2)%2+1;
+                    aux = lista[vazia];
+                    lista[vazia] = lista[random*2+4];
+                    lista[random*2+4] = aux;
+                    lista[0] = random*2+4;
+                    break;
+            
+        }
+        System.out.println(lista[0]+"\n");
+        return lista;
+    }
 }
