@@ -16,16 +16,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/Dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eightpuzzle.TelaPrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/Dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eightpuzzle.TelaPrincipalController">
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="405.0" spacing="50.0" styleClass="forth">
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="443.0" spacing="50.0" styleClass="forth">
                <children>
                   <JFXRadioButton fx:id="rbAlg1" selected="true" text="Algoritmo 1">
                      <toggleGroup>
                         <ToggleGroup fx:id="group" />
-                     </toggleGroup></JFXRadioButton>
+                     </toggleGroup>
+                  </JFXRadioButton>
                   <JFXRadioButton fx:id="rbAlg2" text="Algoritmo 2" toggleGroup="$group" />
                </children>
             </VBox>
@@ -43,7 +44,7 @@
                   </MenuBar>
                   <AnchorPane prefHeight="400.0" prefWidth="423.0" styleClass="default">
                      <children>
-                        <GridPane fx:id="gpimage" prefHeight="200.0" prefWidth="456.0" style="-fx-border-color: #578d8d;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="100.0">
+                        <GridPane fx:id="gpimage" layoutX="20.0" layoutY="700.0" prefHeight="201.0" prefWidth="201.0" style="-fx-border-color: #578d8d; -fx-border-width: 2;" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="100.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -55,18 +56,18 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="im00" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" />
-                              <ImageView fx:id="im01" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="1" />
-                              <ImageView fx:id="im02" fitHeight="69.0" fitWidth="69.0" pickOnBounds="true" GridPane.columnIndex="2" />
-                              <ImageView fx:id="im10" fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im11" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im12" fitHeight="67.0" fitWidth="69.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im20" fitHeight="66.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="2" />
-                              <ImageView fx:id="im21" fitHeight="67.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <ImageView fx:id="im22" fitHeight="66.0" fitWidth="68.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im00" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" style="-fx-border-coor: #578d8d;" />
+                              <ImageView fx:id="im01" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="1" />
+                              <ImageView fx:id="im02" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="im10" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im11" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im12" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im20" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im21" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im22" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <Label layoutX="128.0" layoutY="50.0" prefHeight="21.0" prefWidth="69.0" styleClass="labeli" text="8-Puzzle" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="50.0">
+                        <Label layoutX="128.0" layoutY="50.0" prefHeight="21.0" prefWidth="70.0" styleClass="labeli" text="8-Puzzle" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="50.0">
                            <font>
                               <Font name="Georgia" size="18.0" />
                            </font>
@@ -75,7 +76,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="403.0" spacing="50.0" styleClass="forth">
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="416.0" spacing="50.0" styleClass="forth">
                <children>
                   <JFXButton fx:id="btEmbaralhar" onAction="#evtEmbaralhar" text="Embaralhar" />
                   <JFXButton fx:id="evtResolver" onAction="#evtResolver" text="Resolver" />
