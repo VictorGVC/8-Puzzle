@@ -5,15 +5,24 @@
  */
 package eightpuzzle;
 
+import Funcoes.Transformacoes;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -21,6 +30,9 @@ import javafx.scene.layout.GridPane;
  */
 public class TelaPrincipalController implements Initializable {
 
+    private ArrayList imagemLista;
+    static public File arq = null;
+    private File arquivo;
     @FXML
     private GridPane gpimage;
     @FXML
@@ -41,13 +53,52 @@ public class TelaPrincipalController implements Initializable {
     private ImageView im21;
     @FXML
     private ImageView im22;
+    @FXML
+    private JFXRadioButton rbAlg1;
+    @FXML
+    private JFXRadioButton rbAlg2;
+    @FXML
+    private JFXButton btEmbaralhar;
+    @FXML
+    private JFXButton evtResolver;
+    @FXML
+    private ToggleGroup group;
     
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+       
+    }
+    @FXML
+    private void evtAbrir(ActionEvent event) {
+        FileChooser fc=new FileChooser();
+        ImageView imageview = new ImageView();
+        arq = fc.showOpenDialog(null);
+        Image img;
+       if(arq!=null)
+       {
+           imagemLista = new ArrayList();
+           arquivo = arq;
+           img = new Image(arq.toURI().toString());
+           imagemLista = Transformacoes.Recortar(img);
+           for(int i =0; i<9;i++)
+           {
+               
+                imageview = (ImageView)gpimage.getChildren().get(i);
+                imageview.setImage((Image)imagemLista.get(i));
+                imageview.setFitWidth(67);
+                imageview.setFitHeight(67);
+           }
+
+        }
+        
+    }
+
+    @FXML
+    private void evtLimpar(ActionEvent event) {
+    }
+}
 
     
-}
+
