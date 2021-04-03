@@ -5,9 +5,13 @@
  */
 package Funcoes;
 
+import ClassesControle.Nodo;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.util.ArrayList;
+import java.util.Collections;
+import static java.util.Collections.sort;
+import java.util.Comparator;
 import java.util.List;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -189,65 +193,65 @@ public class Transformacoes {
         return lista;
     }
     
-    private static List<int[]> getCaminhos(int lista[])
+    private static List<Nodo> getCaminhos(Nodo n)
     {
-        List caminhos = new ArrayList();
+        List<Nodo> caminhos = new ArrayList();
         
-        switch(lista[0])
+        switch(n.getLista()[0])
         {
             case 1:
-                    caminhos.add(fazerMovimento(lista,2));
-                    caminhos.add(fazerMovimento(lista,4));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),2)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),4)));
                     break;
             case 2:
-                    caminhos.add(fazerMovimento(lista,1));
-                    caminhos.add(fazerMovimento(lista,3));
-                    caminhos.add(fazerMovimento(lista,5));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),1)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),3)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),5)));
                     break;
             case 3:
-                    caminhos.add(fazerMovimento(lista,2));
-                    caminhos.add(fazerMovimento(lista,6));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),2)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),6)));
                     break;
             case 4:
-                    caminhos.add(fazerMovimento(lista,1));
-                    caminhos.add(fazerMovimento(lista,5));
-                    caminhos.add(fazerMovimento(lista,7));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),1)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),5)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),7)));
                     break;
             case 5:
-                    caminhos.add(fazerMovimento(lista,2));
-                    caminhos.add(fazerMovimento(lista,4));
-                    caminhos.add(fazerMovimento(lista,6));
-                    caminhos.add(fazerMovimento(lista,8));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),2)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),4)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),6)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),8)));
                     break;
             case 6:
-                    caminhos.add(fazerMovimento(lista,3));
-                    caminhos.add(fazerMovimento(lista,5));
-                    caminhos.add(fazerMovimento(lista,9));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),3)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),5)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),9)));
                     break;
             case 7:
-                    caminhos.add(fazerMovimento(lista,4));
-                    caminhos.add(fazerMovimento(lista,8));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),4)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),8)));
                     break;
             case 8:
-                    caminhos.add(fazerMovimento(lista,5));
-                    caminhos.add(fazerMovimento(lista,7));
-                    caminhos.add(fazerMovimento(lista,9));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),5)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),7)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),9)));
                     break;
             case 9:
-                    caminhos.add(fazerMovimento(lista,6));
-                    caminhos.add(fazerMovimento(lista,8));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),6)));
+                    caminhos.add(new Nodo(fazerMovimento(n.getLista(),8)));
                     break;
         }
         return caminhos;
     }
     
-    private static int calculaDistancia(int[] lista)
+    private static int calculaDistancia(Nodo n)
     {
         int soma = 0,j=0,k=0;
         
         for (int i = 1; i < 10; i++) 
         {    
-            switch(lista[i])
+            switch(n.getLista()[i])
             {
                 case 1:
                     soma += j+k;
@@ -287,22 +291,53 @@ public class Transformacoes {
         return soma;
     }
     
-    public static int[] hillClimb(int lista[])
+    private static Nodo hillClimb(Nodo lanterior, Nodo atual)
     {
-        int [] lanterior = {1,2};
-        int []result = new int[1];
+        Nodo result = new Nodo();
         List<Integer> del = new ArrayList();
-        List<int[]> caminhos = getCaminhos(lista);
-        int atual = calculaDistancia(lista);
+        List<Nodo> caminhos = getCaminhos(atual);
+        
         int i = 0;
-        for (int[] caminho : caminhos) 
+        caminhos.sort(Comparator.comparing(Nodo::getValor));
+        for (Nodo caminho : caminhos) 
         {
-            if(atual<=calculaDistancia(caminho) || caminho == lanterior)
+            caminho.setValor(calculaDistancia(caminho));
+            if(atual.getValor() <= caminho.getValor() || caminho.getLista() == lanterior.getLista())
                 del.add(i);
             i++;
         }
+        del.sort(Comparator.reverseOrder());
         for (int d : del) 
             caminhos.remove(d);
+        
+        boolean b = true;
+        for (int j = 0; j < caminhos.size() && b; j++) 
+        {
+            if(caminhos.get(j).getValor()==0)
+            {
+                result = caminhos.get(j);
+                b = false;
+            }
+            else
+            {
+                result = hillClimb(atual,caminhos.get(j));
+                if(result.getValor() == 0)
+                    b = false;
+            }
+        }
+        
+        return result;
+    }
+    
+    public static int[] hillClimb(int lista[])
+    {
+        Nodo atual = new Nodo(lista);
+        atual.setLista(lista);
+        int [] lanterior = lista;
+        int []result = new int[10];
+        atual.setValor(calculaDistancia(atual));
+        
+        result = hillClimb(atual, atual).getLista();
         
         return result;
     }

@@ -100,8 +100,7 @@ public class TelaPrincipalController implements Initializable {
     private void evtEmbaralhar(ActionEvent event)
     {
         ImageView imageview = new ImageView();
-        lista = Funcoes.Transformacoes.Embaralhar(12);
-        Funcoes.Transformacoes.hillClimb(new int[]{1,9,2,3,1,5,6,7,8,4});
+        lista = Funcoes.Transformacoes.Embaralhar(200);
         for(int i=1;i<=9;i++)
         {
             imageview = (ImageView)gpimage.getChildren().get(i-1);
@@ -116,7 +115,21 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    private void evtResolver(ActionEvent event) {
+    private void evtResolver(ActionEvent event) 
+    {
+        if(rbAlg1.isSelected())
+        {
+            ImageView imageview = new ImageView();
+            lista = Transformacoes.hillClimb(lista);
+            for(int i=1;i<=9;i++)
+            {
+                imageview = (ImageView)gpimage.getChildren().get(i-1);
+                imageview.setImage((Image)imagemLista.get(lista[i]-1));
+                imageview.setFitWidth(60);
+                imageview.setFitHeight(60);
+            }
+        }
+        System.out.println("aooooooba");
     }
 }
 
