@@ -8,6 +8,7 @@ package Funcoes;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -87,25 +88,25 @@ public class Transformacoes {
         int lista[] = {9,1,2,3,4,5,6,7,8,9};
         for(int i =0;i<movimentos;i++)
         {
-            lista = fazerMovimento(lista);
+            lista = fazerMovimentoAleatorio(lista);
         }
         
         return lista;
         
     }
-    private static int[] fazerMovimento(int lista[]){ 
+    private static int[] fazerMovimentoAleatorio(int lista[]){ 
         int vazia = lista[0];
         int aux;
         int random;
         System.out.print(vazia + " para ");
         switch(vazia){
             case 1:
-                   random = (int)(Math.random()*2)%2 + 1;
-                   aux = lista[vazia];
-                   lista[vazia] = lista[random*2];
-                   lista[random*2] = aux;
-                   lista[0] = random*2;
-                   break;
+                    random = (int)(Math.random()*2)%2 + 1;
+                    aux = lista[vazia];
+                    lista[vazia] = lista[random*2];
+                    lista[random*2] = aux;
+                    lista[0] = random*2;
+                    break;
             case 2:
                    random = (int)(Math.random()*3)%3;
                    aux = lista[vazia];
@@ -114,6 +115,7 @@ public class Transformacoes {
                    lista[0] = random*2+1;
                    break;
             case 3:
+                    
                     random = (int)(Math.random()*2)%2;
                     aux = lista[vazia];
                     lista[vazia] = lista[random*4+2];
@@ -185,5 +187,136 @@ public class Transformacoes {
         }
         System.out.println(lista[0]+"\n");
         return lista;
+    }
+    
+    private static List<int[]> getCaminhos(int lista[])
+    {
+        List caminhos = new ArrayList();
+        
+        switch(lista[0])
+        {
+            case 1:
+                    caminhos.add(fazerMovimento(lista,2));
+                    caminhos.add(fazerMovimento(lista,4));
+                    break;
+            case 2:
+                    caminhos.add(fazerMovimento(lista,1));
+                    caminhos.add(fazerMovimento(lista,3));
+                    caminhos.add(fazerMovimento(lista,5));
+                    break;
+            case 3:
+                    caminhos.add(fazerMovimento(lista,2));
+                    caminhos.add(fazerMovimento(lista,6));
+                    break;
+            case 4:
+                    caminhos.add(fazerMovimento(lista,1));
+                    caminhos.add(fazerMovimento(lista,5));
+                    caminhos.add(fazerMovimento(lista,7));
+                    break;
+            case 5:
+                    caminhos.add(fazerMovimento(lista,2));
+                    caminhos.add(fazerMovimento(lista,4));
+                    caminhos.add(fazerMovimento(lista,6));
+                    caminhos.add(fazerMovimento(lista,8));
+                    break;
+            case 6:
+                    caminhos.add(fazerMovimento(lista,3));
+                    caminhos.add(fazerMovimento(lista,5));
+                    caminhos.add(fazerMovimento(lista,9));
+                    break;
+            case 7:
+                    caminhos.add(fazerMovimento(lista,4));
+                    caminhos.add(fazerMovimento(lista,8));
+                    break;
+            case 8:
+                    caminhos.add(fazerMovimento(lista,5));
+                    caminhos.add(fazerMovimento(lista,7));
+                    caminhos.add(fazerMovimento(lista,9));
+                    break;
+            case 9:
+                    caminhos.add(fazerMovimento(lista,6));
+                    caminhos.add(fazerMovimento(lista,8));
+                    break;
+        }
+        return caminhos;
+    }
+    
+    private static int calculaDistancia(int[] lista)
+    {
+        int soma = 0,j=0,k=0;
+        
+        for (int i = 1; i < 10; i++) 
+        {    
+            switch(lista[i])
+            {
+                case 1:
+                    soma += j+k;
+                break;
+                case 2:
+                    soma += j+Math.abs(k-1);
+                break;
+                case 3:
+                    soma += j+Math.abs(k-2);
+                break;
+                case 4:
+                    soma += Math.abs(j-1)+k;
+                break;
+                case 5:
+                    soma += Math.abs(j-1)+Math.abs(k-1);
+                break;
+                case 6:
+                    soma += Math.abs(j-1)+Math.abs(k-2);
+                break;
+                case 7:
+                    soma += Math.abs(j-2)+k;
+                break;
+                case 8:
+                    soma += Math.abs(j-2)+Math.abs(k-1);
+                break;
+                
+            }
+            
+            k++;
+            if(k==3)
+            {
+                k = 0;
+                j++;
+            }
+        }
+        
+        return soma;
+    }
+    
+    public static int[] hillClimb(int lista[])
+    {
+        int [] lanterior = {1,2};
+        int []result = new int[1];
+        List<Integer> del = new ArrayList();
+        List<int[]> caminhos = getCaminhos(lista);
+        int atual = calculaDistancia(lista);
+        int i = 0;
+        for (int[] caminho : caminhos) 
+        {
+            if(atual<=calculaDistancia(caminho) || caminho == lanterior)
+                del.add(i);
+            i++;
+        }
+        for (int d : del) 
+            caminhos.remove(d);
+        
+        return result;
+    }
+    
+    private static int[] fazerMovimento(int lista[],int pos)
+    { 
+        int aux;
+        int vazia = lista[0];
+        int []alist = new int[lista.length];
+        alist = lista.clone();
+        aux = lista[vazia];
+        alist[vazia] = lista[pos];
+        alist[pos] = aux;
+        alist[0] = pos;
+        return alist;
     }
 }

@@ -101,6 +101,7 @@ public class TelaPrincipalController implements Initializable {
     {
         ImageView imageview = new ImageView();
         lista = Funcoes.Transformacoes.Embaralhar(12);
+        Funcoes.Transformacoes.hillClimb(new int[]{1,9,2,3,1,5,6,7,8,4});
         for(int i=1;i<=9;i++)
         {
             imageview = (ImageView)gpimage.getChildren().get(i-1);
