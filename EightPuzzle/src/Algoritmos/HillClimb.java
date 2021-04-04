@@ -123,6 +123,9 @@ public class HillClimb {
                 case 8:
                     soma += Math.abs(j-2)+Math.abs(k-1);
                 break;
+                case 9:
+                    soma +=Math.abs(j-2)+Math.abs(k-2);
+                break;
                 
             }
             
@@ -209,7 +212,7 @@ public class HillClimb {
     }
 
     public int[][] getResultadoCaminho() {
-        int[] caminho[] = new int[10][];
+        int[] caminho[] = new int[profundidade][];
         
         for(int i =0;i<profundidade;i++)
         {

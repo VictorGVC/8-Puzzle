@@ -193,7 +193,7 @@ public class Transformacoes {
         return lista;
     }
     
-    private static List<Nodo> getCaminhos(Nodo n)
+    public static List<Nodo> getCaminhos(Nodo n)
     {
         List<Nodo> caminhos = new ArrayList();
         
@@ -244,8 +244,20 @@ public class Transformacoes {
         }
         return caminhos;
     }
-    
-    private static int calculaDistancia(Nodo n)
+    public static int calculaPos(Nodo n)
+    {
+        int soma =0;
+        
+        
+        
+        for(int i= 1;i<=9;i++)
+        {
+            if(n.getLista()[i] != i)
+                soma++;
+        }
+        return soma;
+    }
+    public static int calculaDistancia(Nodo n)
     {
         int soma = 0,j=0,k=0;
         
@@ -276,6 +288,9 @@ public class Transformacoes {
                 break;
                 case 8:
                     soma += Math.abs(j-2)+Math.abs(k-1);
+                break;
+                case 9:
+                    soma += Math.abs(j-2)+Math.abs(k-2);
                 break;
                 
             }

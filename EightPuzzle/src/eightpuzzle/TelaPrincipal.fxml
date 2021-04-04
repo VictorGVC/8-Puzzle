@@ -36,7 +36,7 @@
                         <ToggleGroup fx:id="group" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton fx:id="rbAlg2" text="Algoritmo 2" toggleGroup="$group" />
+                  <JFXRadioButton fx:id="rbAlg2" prefHeight="17.0" prefWidth="88.0" text="A*" toggleGroup="$group" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">

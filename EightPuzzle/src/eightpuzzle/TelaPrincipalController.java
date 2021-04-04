@@ -5,6 +5,7 @@
  */
 package eightpuzzle;
 
+import Algoritmos.AEstrela;
 import Algoritmos.HillClimb;
 import Funcoes.Transformacoes;
 import com.jfoenix.controls.JFXButton;
@@ -109,7 +110,7 @@ public class TelaPrincipalController implements Initializable {
         {
             labelTempo.setText("");
             labelpasso.setText("");
-            lista = Funcoes.Transformacoes.Embaralhar(7);
+            lista = Funcoes.Transformacoes.Embaralhar(100);
             passosLista = new int[10][];
 
             atualizaTela(lista);
@@ -169,12 +170,25 @@ public class TelaPrincipalController implements Initializable {
             atualizaTela(lista);
             
         }
+        if(rbAlg2.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
+        {
+            AEstrela estrela = new AEstrela(lista);
+            start = System.currentTimeMillis();
+            estrela.resolver();
+            finish = System.currentTimeMillis();
+            labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
+            passosLista = estrela.getResultadoCaminho();
+            passosPosMax = passosPos = estrela.getProfundidade();
+            lista = passosLista[passosPosMax-1].clone();
+            labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
+            atualizaTela(lista);
+        }
         
     }
 
     @FXML
     private void evtPassoAtras(ActionEvent event) {
-        if(passosPos!= -1 && passosPos != 1)
+        if(passosPos!= -1 && passosPos > 1)
         {
             passosPos--;
             
