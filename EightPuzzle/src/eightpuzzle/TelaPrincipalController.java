@@ -152,7 +152,6 @@ public class TelaPrincipalController implements Initializable {
             passosPosMax = passosPos = hillclimb.getProfundidade();
             lista =  passosLista[passosPosMax-1].clone();
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-<<<<<<< HEAD
             atualizaTela(lista);
             
         }
@@ -168,24 +167,16 @@ public class TelaPrincipalController implements Initializable {
             lista = passosLista[passosPosMax-1].clone();
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
             atualizaTela(lista);
-=======
->>>>>>> origin/main
         }
     }
 
     @FXML
     private void evtPassoAtras(ActionEvent event) {
-<<<<<<< HEAD
         if(passosPos!= -1 && passosPos > 1)
-=======
-        
-        if(passosPos!= -1 && passosPos != 1)
->>>>>>> origin/main
         {
             passosPos--;
             
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-<<<<<<< HEAD
             
         }
         if(passosPos!= -1)
@@ -193,9 +184,6 @@ public class TelaPrincipalController implements Initializable {
             atualizaTela(passosLista[passosPos-1]);
             lista = passosLista[passosPos-1];
         }
-=======
-        }   
->>>>>>> origin/main
     }
 
     @FXML
