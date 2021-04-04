@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.event.HyperlinkEvent;
 
 /**
  *
@@ -78,7 +79,7 @@ public class TelaPrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       reiniciaTela();
     }
     @FXML
     private void evtAbrir(ActionEvent event) {
@@ -103,13 +104,15 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private void evtEmbaralhar(ActionEvent event)
     {
-        labelTempo.setText("");
-        labelpasso.setText("");
-        lista = Funcoes.Transformacoes.Embaralhar(7);
-        passosLista = new int[10][];
-        passosPos = 0;
-        atualizaTela(lista);
-        passosLista[0] = lista;
+        if(imagemLista != null && !imagemLista.isEmpty())
+        {
+            labelTempo.setText("");
+            labelpasso.setText("");
+            lista = Funcoes.Transformacoes.Embaralhar(7);
+            passosLista = new int[10][];
+
+            atualizaTela(lista);
+        }
         
     }
     private void atualizaTela(int lista[])
@@ -117,6 +120,7 @@ public class TelaPrincipalController implements Initializable {
         ImageView imageview = new ImageView();
         for(int i=1;i<=9;i++)
             {
+                gpimage.getChildren().get(i-1).setVisible(true);
                 imageview = (ImageView)gpimage.getChildren().get(i-1);
                 imageview.setImage((Image)imagemLista.get(lista[i]-1));
                 imageview.setFitWidth(60);
@@ -126,13 +130,27 @@ public class TelaPrincipalController implements Initializable {
     }
     @FXML
     private void evtLimpar(ActionEvent event) {
-        labelTempo.setText("");
+    
+        reiniciaTela();
     }
+        
+    private void reiniciaTela()
+    {
+        labelTempo.setText("");
+        labelpasso.setText("");
+        passosPos = -1;
+        for(int i =0;i<9;i++)
+        {
+            gpimage.getChildren().get(i).setVisible(false);
+        }
+    }
+    
 
     @FXML
     private void evtResolver(ActionEvent event) 
     {
-        if(rbAlg1.isSelected())
+        
+        if(rbAlg1.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
         {
             
             HillClimb hillclimb = new HillClimb(lista);
@@ -154,7 +172,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtPassoAtras(ActionEvent event) {
-        if(passosPos != 1)
+        if(passosPos!= -1 && passosPos != 1)
         {
             passosPos--;
             atualizaTela(passosLista[passosPos-1]);
@@ -165,7 +183,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtPassoFrente(ActionEvent event) {
-        if(passosPos < passosPosMax)
+        if(passosPos != -1 && passosPos < passosPosMax)
         {
             
             passosPos++;
