@@ -291,7 +291,7 @@ public class Transformacoes {
         return soma;
     }
     
-    private static Nodo hillClimb(Nodo lanterior, Nodo atual)
+    private static Nodo hillClimb(Nodo lanterior, Nodo atual,int profundidade[],int[] passoslista[])
     {
         Nodo result = new Nodo();
         List<Integer> del = new ArrayList();
@@ -315,12 +315,15 @@ public class Transformacoes {
         {
             if(caminhos.get(j).getValor()==0)
             {
+                
                 result = caminhos.get(j);
                 b = false;
             }
             else
             {
-                result = hillClimb(atual,caminhos.get(j));
+                profundidade[0]++;
+                result = hillClimb(atual,caminhos.get(j),profundidade,passoslista);
+                
                 if(result.getValor() == 0)
                     b = false;
             }
@@ -329,15 +332,16 @@ public class Transformacoes {
         return result;
     }
     
-    public static int[] hillClimb(int lista[])
+    public static int[] hillClimb(int lista[],int profundidade[],int[] passoslista[])
     {
         Nodo atual = new Nodo(lista);
-        atual.setLista(lista);
-        int [] lanterior = lista;
+        //atual.setLista(lista);
+        
+        
         int []result = new int[10];
         atual.setValor(calculaDistancia(atual));
         
-        result = hillClimb(atual, atual).getLista();
+        result = hillClimb(atual, atual,profundidade,passoslista).getLista();
         
         return result;
     }

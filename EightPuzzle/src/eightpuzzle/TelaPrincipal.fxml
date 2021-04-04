@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
@@ -17,7 +25,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/Dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eightpuzzle.TelaPrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/Dark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eightpuzzle.TelaPrincipalController">
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -71,9 +79,29 @@
                               <Insets left="5.0" />
                            </padding>
                         </GridPane>
-                        <Label layoutX="128.0" layoutY="50.0" prefHeight="21.0" prefWidth="70.0" styleClass="labeli" text="8-Puzzle" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="50.0">
+                        <Label layoutX="113.0" layoutY="21.0" prefHeight="21.0" prefWidth="70.0" styleClass="labeli" text="8-Puzzle" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="21.0">
                            <font>
                               <Font name="Georgia" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="108.0" layoutY="327.0" onAction="#evtPassoAtras" text="&lt;-">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="163.0" layoutY="327.0" onAction="#evtPassoFrente" text="-&gt;">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="labelTempo" layoutX="53.0" layoutY="71.0" prefHeight="21.0" prefWidth="201.0" styleClass="labeli">
+                           <font>
+                              <Font name="Georgia" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelpasso" layoutX="53.0" layoutY="306.0" prefHeight="21.0" prefWidth="201.0" styleClass="labeli" textAlignment="CENTER">
+                           <font>
+                              <Font name="Georgia" size="12.0" />
                            </font>
                         </Label>
                      </children>

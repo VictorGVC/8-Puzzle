@@ -5,6 +5,7 @@
  */
 package eightpuzzle;
 
+import Algoritmos.HillClimb;
 import Funcoes.Transformacoes;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
@@ -31,8 +32,11 @@ import javafx.stage.Stage;
  */
 public class TelaPrincipalController implements Initializable {
     
+    private long start,finish;
     private int lista[];
     private ArrayList imagemLista;
+    private int passosLista[][];
+    private int passosPos,passosPosMax;
     static public File arq = null;
     private File arquivo;
     @FXML
@@ -65,6 +69,10 @@ public class TelaPrincipalController implements Initializable {
     private JFXButton evtResolver;
     @FXML
     private ToggleGroup group;
+    @FXML
+    private Label labelTempo;
+    @FXML
+    private Label labelpasso;
     
     
     
@@ -80,18 +88,14 @@ public class TelaPrincipalController implements Initializable {
         Image img;
        if(arq!=null)
        {
+           lista = new int[]{9,1,2,3,4,5,6,7,8,9};
            imagemLista = new ArrayList();
            arquivo = arq;
            img = new Image(arq.toURI().toString());
            System.out.println(arq.toURI().toString());
            imagemLista = Transformacoes.Recortar(img);
-           for(int i =0; i<9;i++)
-           {
-                imageview = (ImageView)gpimage.getChildren().get(i);
-                imageview.setImage((Image)imagemLista.get(i));
-                imageview.setFitWidth(60);
-                imageview.setFitHeight(60);
-           }
+           atualizaTela(lista);
+           labelTempo.setText("");
 
         }
         
@@ -99,19 +103,30 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private void evtEmbaralhar(ActionEvent event)
     {
-        ImageView imageview = new ImageView();
-        lista = Funcoes.Transformacoes.Embaralhar(200);
-        for(int i=1;i<=9;i++)
-        {
-            imageview = (ImageView)gpimage.getChildren().get(i-1);
-            imageview.setImage((Image)imagemLista.get(lista[i]-1));
-            imageview.setFitWidth(60);
-            imageview.setFitHeight(60);
-        }
+        labelTempo.setText("");
+        labelpasso.setText("");
+        lista = Funcoes.Transformacoes.Embaralhar(7);
+        passosLista = new int[10][];
+        passosPos = 0;
+        atualizaTela(lista);
+        passosLista[0] = lista;
+        
     }
-
+    private void atualizaTela(int lista[])
+    {
+        ImageView imageview = new ImageView();
+        for(int i=1;i<=9;i++)
+            {
+                imageview = (ImageView)gpimage.getChildren().get(i-1);
+                imageview.setImage((Image)imagemLista.get(lista[i]-1));
+                imageview.setFitWidth(60);
+                imageview.setFitHeight(60);
+            }
+        
+    }
     @FXML
     private void evtLimpar(ActionEvent event) {
+        labelTempo.setText("");
     }
 
     @FXML
@@ -119,17 +134,44 @@ public class TelaPrincipalController implements Initializable {
     {
         if(rbAlg1.isSelected())
         {
-            ImageView imageview = new ImageView();
-            lista = Transformacoes.hillClimb(lista);
-            for(int i=1;i<=9;i++)
-            {
-                imageview = (ImageView)gpimage.getChildren().get(i-1);
-                imageview.setImage((Image)imagemLista.get(lista[i]-1));
-                imageview.setFitWidth(60);
-                imageview.setFitHeight(60);
-            }
+            
+            HillClimb hillclimb = new HillClimb(lista);
+            start = System.currentTimeMillis();
+            hillclimb.resolver();
+            finish = System.currentTimeMillis();
+            labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
+            passosLista = hillclimb.getResultadoCaminho();
+            lista = hillclimb.getResultado();
+            atualizaTela(lista);
+//            System.out.println(";");
+            passosPosMax = passosPos = hillclimb.getProfundidade();
+            labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
+            
+            
         }
-        System.out.println("aooooooba");
+        
+    }
+
+    @FXML
+    private void evtPassoAtras(ActionEvent event) {
+        if(passosPos != 1)
+        {
+            passosPos--;
+            atualizaTela(passosLista[passosPos-1]);
+            labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
+            
+        }   
+    }
+
+    @FXML
+    private void evtPassoFrente(ActionEvent event) {
+        if(passosPos < passosPosMax)
+        {
+            
+            passosPos++;
+            atualizaTela(passosLista[passosPos-1]);
+            labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
+        }
     }
 }
 
