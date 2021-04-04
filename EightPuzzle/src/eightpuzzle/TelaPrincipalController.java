@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 
@@ -173,4 +174,160 @@ public class TelaPrincipalController implements Initializable {
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
         }
     }
+
+    @FXML
+    private void evtJogar1(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 1;
+            if(vazia == 4 || vazia == 2)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar2(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 2;
+            if(vazia == 1 || vazia == 3 || vazia == 5)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            }
+        }
+    }
+
+    @FXML
+    private void evtJogar3(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 3;
+            if(vazia == 2 || vazia == 6)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar4(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 4;
+            if(vazia == 1 || vazia == 5 || vazia == 7)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar5(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 5;
+            if(vazia == 2 || vazia == 4 || vazia == 6|| vazia==8)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar6(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 6;
+            if(vazia == 3 || vazia == 5 || vazia == 9)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar7(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 7;
+            if(vazia == 4 || vazia == 8)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar8(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 8;
+            if(vazia == 9 || vazia == 5 || vazia == 7)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
+
+    @FXML
+    private void evtJogar22(MouseEvent event) {
+        if(imagemLista!=null && !imagemLista.isEmpty())
+        {
+            int vazia = lista[0];
+            int K = 9;
+            if(vazia == 8 || vazia == 6)
+            {
+                int aux = lista[K];
+                lista[K] = lista[vazia];
+                lista[vazia] = aux;
+                lista[0] = K;
+                atualizaTela(lista);
+            } 
+        }
+    }
 }
+
+    
+
