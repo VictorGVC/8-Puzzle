@@ -18,6 +18,7 @@ public class HillClimb {
     private Nodo inicio;
     private List<Nodo> resultadoCaminho;
     private int profundidade;
+    
     public HillClimb(int lista[])
     {
         this.inicio = new Nodo(lista);

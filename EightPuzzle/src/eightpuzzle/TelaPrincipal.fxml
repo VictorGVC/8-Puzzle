@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
@@ -17,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/Dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eightpuzzle.TelaPrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/Dark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eightpuzzle.TelaPrincipalController">
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -86,12 +93,17 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <Label fx:id="labelTempo" layoutX="53.0" layoutY="71.0" prefHeight="21.0" prefWidth="201.0" styleClass="labeli">
+                        <Label fx:id="labelTempo" layoutX="57.0" layoutY="61.0" prefHeight="21.0" prefWidth="105.0" styleClass="labeli">
                            <font>
                               <Font name="Georgia" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelpasso" layoutX="53.0" layoutY="306.0" prefHeight="21.0" prefWidth="201.0" styleClass="labeli" textAlignment="CENTER">
+                        <Label fx:id="labelpasso" layoutX="58.0" layoutY="287.0" prefHeight="21.0" prefWidth="201.0" styleClass="labeli" textAlignment="CENTER">
+                           <font>
+                              <Font name="Georgia" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelvisitados" layoutX="158.0" layoutY="61.0" prefHeight="21.0" prefWidth="105.0" styleClass="labeli">
                            <font>
                               <Font name="Georgia" size="12.0" />
                            </font>

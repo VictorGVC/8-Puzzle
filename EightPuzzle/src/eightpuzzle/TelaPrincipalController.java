@@ -64,6 +64,8 @@ public class TelaPrincipalController implements Initializable {
     private Label labelTempo;
     @FXML
     private Label labelpasso;
+    @FXML
+    private Label labelvisitados;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -88,6 +90,7 @@ public class TelaPrincipalController implements Initializable {
             imagemLista = Transformacoes.Recortar(img);
             atualizaTela(lista);
             labelTempo.setText("");
+            labelvisitados.setText("");
         }
     }
     
@@ -96,6 +99,7 @@ public class TelaPrincipalController implements Initializable {
         
         if(imagemLista != null && !imagemLista.isEmpty())
         {
+            labelvisitados.setText("");
             labelTempo.setText("");
             labelpasso.setText("");
             lista = Funcoes.Transformacoes.Embaralhar(100);
@@ -126,7 +130,7 @@ public class TelaPrincipalController implements Initializable {
     }
         
     private void reiniciaTela() {
-        
+        labelvisitados.setText("");
         labelTempo.setText("");
         labelpasso.setText("");
         passosPos = -1;
@@ -146,7 +150,7 @@ public class TelaPrincipalController implements Initializable {
             finish = System.currentTimeMillis();
             labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
             passosLista = hillclimb.getResultadoCaminho();
-            
+            labelvisitados.setText("Visitados: ");
             
 //            System.out.println(";");
             passosPosMax = passosPos = hillclimb.getProfundidade();
@@ -162,6 +166,7 @@ public class TelaPrincipalController implements Initializable {
             estrela.resolver();
             finish = System.currentTimeMillis();
             labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
+            labelvisitados.setText("Visitados: "+estrela.getNumVisitados());
             passosLista = estrela.getResultadoCaminho();
             passosPosMax = passosPos = estrela.getProfundidade();
             lista = passosLista[passosPosMax-1].clone();
