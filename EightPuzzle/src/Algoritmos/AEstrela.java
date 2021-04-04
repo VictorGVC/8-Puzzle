@@ -27,7 +27,7 @@ public class AEstrela {
         
         fp = new FilaPrioridade();
         inicial = new Nodo(lista);
-        inicial.setValor(Transformacoes.calculaPos(inicial)+Transformacoes.calculaDistancia(inicial)+1);
+        inicial.setValor(Transformacoes.calculaDistancia(inicial)+1);
         //fp.adicionar(inicial);
         visitados = new ArrayList();
         resultadoCaminho = new ArrayList();
@@ -64,7 +64,7 @@ public class AEstrela {
                     {
                         
                         n.setCaminho(nodo.getCaminho());
-                        n.setValor(Transformacoes.calculaPos(n)+Transformacoes.calculaDistancia(n)+n.getCaminho().size()+1);
+                        n.setValor(Transformacoes.calculaDistancia(n)+n.getCaminho().size()+1);
                         n.adicionaCaminho(visitados.size());
                         visitados.add(n);
                         listavisitados.add(n.getLista());

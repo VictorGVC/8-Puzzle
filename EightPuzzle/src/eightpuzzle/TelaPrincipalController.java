@@ -5,6 +5,7 @@ import Algoritmos.HillClimb;
 import Funcoes.Transformacoes;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,6 +67,8 @@ public class TelaPrincipalController implements Initializable {
     private Label labelpasso;
     @FXML
     private Label labelvisitados;
+    @FXML
+    private JFXTextField txvezes;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,17 +99,22 @@ public class TelaPrincipalController implements Initializable {
     
     @FXML
     private void evtEmbaralhar(ActionEvent event) {
-        
-        if(imagemLista != null && !imagemLista.isEmpty())
-        {
-            labelvisitados.setText("");
-            labelTempo.setText("");
-            labelpasso.setText("");
-            lista = Funcoes.Transformacoes.Embaralhar(100);
-            passosLista = new int[10][];
+        try {
+                Integer.parseInt(txvezes.getText());
+                
+                if(imagemLista != null && !imagemLista.isEmpty())
+                {
+                    labelvisitados.setText("");
+                    labelTempo.setText("");
+                    labelpasso.setText("");
+                    lista = Funcoes.Transformacoes.Embaralhar(Integer.parseInt(txvezes.getText()));
 
-            atualizaTela(lista);
-        }
+                    atualizaTela(lista);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("aoo deu aí em, coloca um numero!");
+            }
+        
     }
     
     private void atualizaTela(int lista[]) {
@@ -150,7 +158,7 @@ public class TelaPrincipalController implements Initializable {
             finish = System.currentTimeMillis();
             labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
             passosLista = hillclimb.getResultadoCaminho();
-            labelvisitados.setText("Visitados: ");
+            labelvisitados.setText("Visitados: "+hillclimb.getPassos());
             
 //            System.out.println(";");
             passosPosMax = passosPos = hillclimb.getProfundidade();

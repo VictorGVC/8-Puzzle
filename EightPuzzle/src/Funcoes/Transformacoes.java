@@ -81,7 +81,7 @@ public class Transformacoes {
             {
                 raster.getPixel(j, i, pixel);
                 //cinza = (pixel[0]+pixel[1]+pixel[2])/3; falso cinza
-                cinza =(int) (pixel[0] *.3+pixel[1]*.59+pixel[2]*.11);// verdadeiro cinza para modificação
+                cinza =(int) (pixel[0] *.2+pixel[1]*.3+pixel[2]*.05);// verdadeiro cinza para modificação
                 pixel[0] = pixel[1] = pixel[2] = cinza;
                 raster.setPixel(j, i, pixel);
             }
@@ -102,7 +102,6 @@ public class Transformacoes {
         int vazia = lista[0];
         int aux;
         int random;
-        System.out.print(vazia + " para ");
         switch(vazia){
             case 1:
                     random = (int)(Math.random()*2)%2 + 1;
@@ -189,7 +188,6 @@ public class Transformacoes {
                     break;
             
         }
-        System.out.println(lista[0]+"\n");
         return lista;
     }
     

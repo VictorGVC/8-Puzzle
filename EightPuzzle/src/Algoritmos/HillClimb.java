@@ -18,11 +18,17 @@ public class HillClimb {
     private Nodo inicio;
     private List<Nodo> resultadoCaminho;
     private int profundidade;
+    private int passos;
     
     public HillClimb(int lista[])
     {
+        passos = 1;
         this.inicio = new Nodo(lista);
         inicio.setValor(calculaDistancia(inicio));
+    }
+
+    public int getPassos() {
+        return passos;
     }
     
     public void resolver()
@@ -30,6 +36,7 @@ public class HillClimb {
         List<Nodo> resultadoCaminhoAux = new ArrayList();
         resultadoCaminho = null;
         hillClimb(inicio,inicio,0,resultadoCaminhoAux);
+        profundidade = resultadoCaminho.size();
         System.out.println("");
         if(resultadoCaminho == null)
         {
@@ -38,11 +45,11 @@ public class HillClimb {
     }
     private Nodo hillClimb(Nodo lanterior, Nodo atual,int auxprof,List<Nodo> resultadoCaminhoAux)
     {
-        Nodo result = new Nodo();
+        Nodo result = atual;
         List<Integer> del = new ArrayList();
         List<Nodo> caminhos = getCaminhos(atual);
+        passos += caminhos.size();
         resultadoCaminhoAux.add(atual);
-        auxprof++;
         int i = 0;
         caminhos.sort(Comparator.comparing(Nodo::getValor));
         for (Nodo caminho : caminhos) 
@@ -61,35 +68,42 @@ public class HillClimb {
         {
             if(caminhos.get(j).getValor()==0)
             {
-                
+                auxprof++;
                 result = caminhos.get(j);
                 
-                b = false;
+                b = false;           
                 resultadoCaminhoAux.add(caminhos.get(j));
-                auxprof++;
-                
             }
             else
             {
-                
+                auxprof++;
                 result = hillClimb(atual,caminhos.get(j),auxprof,resultadoCaminhoAux);
                 
                 if(result.getValor() == 0)
                 {
                     b = false;
                     //resultadoCaminhoAux.add(result);
-                    auxprof++;
-                    
+                }
+                else
+                {
+                    resultadoCaminhoAux.remove(resultadoCaminhoAux.size()-1);
                 }
             }
         }
+        if(resultadoCaminho == null)
+        {
+            resultadoCaminho = resultadoCaminhoAux;
+        }
+        else if(resultadoCaminho.get(resultadoCaminho.size()-1).getValor() > resultadoCaminhoAux.get(resultadoCaminhoAux.size()-1).getValor())
+        {
+            resultadoCaminho = resultadoCaminhoAux;
+        }
+            
         if(!b)
         {
-            profundidade = resultadoCaminhoAux.size();
             resultadoCaminho = resultadoCaminhoAux;
-            
-            
         }
+        
         return result;
     }
     private int calculaDistancia(Nodo n)
@@ -123,9 +137,6 @@ public class HillClimb {
                 break;
                 case 8:
                     soma += Math.abs(j-2)+Math.abs(k-1);
-                break;
-                case 9:
-                    soma +=Math.abs(j-2)+Math.abs(k-2);
                 break;
                 
             }
