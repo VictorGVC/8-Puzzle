@@ -65,15 +65,15 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fx:id="im00" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" style="-fx-border-coor: #578d8d;" />
-                              <ImageView fx:id="im01" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="1" />
-                              <ImageView fx:id="im02" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="2" />
-                              <ImageView fx:id="im10" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im11" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im12" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <ImageView fx:id="im20" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.rowIndex="2" />
-                              <ImageView fx:id="im21" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <ImageView fx:id="im22" fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im00" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar1" pickOnBounds="true" style="-fx-border-coor: #578d8d;" />
+                              <ImageView fx:id="im01" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar2" pickOnBounds="true" GridPane.columnIndex="1" />
+                              <ImageView fx:id="im02" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar3" pickOnBounds="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="im10" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar4" pickOnBounds="true" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im11" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar5" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im12" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar6" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <ImageView fx:id="im20" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar7" pickOnBounds="true" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im21" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar8" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ImageView fx:id="im22" fitHeight="67.0" fitWidth="67.0" onMouseClicked="#evtJogar22" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
