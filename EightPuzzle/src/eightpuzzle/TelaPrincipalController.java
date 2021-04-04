@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eightpuzzle;
 
 import Algoritmos.HillClimb;
@@ -16,21 +11,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javax.swing.event.HyperlinkEvent;
 
-/**
- *
- * @author vicga
- */
 public class TelaPrincipalController implements Initializable {
     
     private long start,finish;
@@ -40,6 +27,7 @@ public class TelaPrincipalController implements Initializable {
     private int passosPos,passosPosMax;
     static public File arq = null;
     private File arquivo;
+    
     @FXML
     private GridPane gpimage;
     @FXML
@@ -75,35 +63,35 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private Label labelpasso;
     
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       reiniciaTela();
+        
+        reiniciaTela();
     }
+    
     @FXML
     private void evtAbrir(ActionEvent event) {
+        
         FileChooser fc=new FileChooser();
         ImageView imageview = new ImageView();
         arq = fc.showOpenDialog(null);
         Image img;
-       if(arq!=null)
-       {
-           lista = new int[]{9,1,2,3,4,5,6,7,8,9};
-           imagemLista = new ArrayList();
-           arquivo = arq;
-           img = new Image(arq.toURI().toString());
-           System.out.println(arq.toURI().toString());
-           imagemLista = Transformacoes.Recortar(img);
-           atualizaTela(lista);
-           labelTempo.setText("");
-
+        if(arq != null)
+        {
+            lista = new int[]{9,1,2,3,4,5,6,7,8,9};
+            imagemLista = new ArrayList();
+            arquivo = arq;
+            img = new Image(arq.toURI().toString());
+            System.out.println(arq.toURI().toString());
+            imagemLista = Transformacoes.Recortar(img);
+            atualizaTela(lista);
+            labelTempo.setText("");
         }
-        
     }
+    
     @FXML
-    private void evtEmbaralhar(ActionEvent event)
-    {
+    private void evtEmbaralhar(ActionEvent event) {
+        
         if(imagemLista != null && !imagemLista.isEmpty())
         {
             labelTempo.setText("");
@@ -113,42 +101,39 @@ public class TelaPrincipalController implements Initializable {
 
             atualizaTela(lista);
         }
-        
     }
-    private void atualizaTela(int lista[])
-    {
+    
+    private void atualizaTela(int lista[]) {
+        
         ImageView imageview = new ImageView();
         for(int i=1;i<=9;i++)
-            {
-                gpimage.getChildren().get(i-1).setVisible(true);
-                imageview = (ImageView)gpimage.getChildren().get(i-1);
-                imageview.setImage((Image)imagemLista.get(lista[i]-1));
-                imageview.setFitWidth(60);
-                imageview.setFitHeight(60);
-            }
+        {
+            gpimage.getChildren().get(i-1).setVisible(true);
+            imageview = (ImageView)gpimage.getChildren().get(i-1);
+            imageview.setImage((Image)imagemLista.get(lista[i]-1));
+            imageview.setFitWidth(60);
+            imageview.setFitHeight(60);
+        }
         
     }
+    
     @FXML
     private void evtLimpar(ActionEvent event) {
     
         reiniciaTela();
     }
         
-    private void reiniciaTela()
-    {
+    private void reiniciaTela() {
+        
         labelTempo.setText("");
         labelpasso.setText("");
         passosPos = -1;
         for(int i =0;i<9;i++)
-        {
             gpimage.getChildren().get(i).setVisible(false);
-        }
     }
     
-
     @FXML
-    private void evtResolver(ActionEvent event) 
-    {
+    private void evtResolver(ActionEvent event) {
         
         if(rbAlg1.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
         {
@@ -164,34 +149,28 @@ public class TelaPrincipalController implements Initializable {
 //            System.out.println(";");
             passosPosMax = passosPos = hillclimb.getProfundidade();
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-            
-            
         }
-        
     }
 
     @FXML
     private void evtPassoAtras(ActionEvent event) {
+        
         if(passosPos!= -1 && passosPos != 1)
         {
             passosPos--;
             atualizaTela(passosLista[passosPos-1]);
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-            
         }   
     }
 
     @FXML
     private void evtPassoFrente(ActionEvent event) {
+        
         if(passosPos != -1 && passosPos < passosPosMax)
         {
-            
             passosPos++;
             atualizaTela(passosLista[passosPos-1]);
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
         }
     }
 }
-
-    
-
