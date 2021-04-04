@@ -99,6 +99,25 @@ public class TelaPrincipalController implements Initializable {
     
     @FXML
     private void evtEmbaralhar(ActionEvent event) {
+        
+            if(txvezes.getText().length()>1 && txvezes.getText().charAt(0) == '"')
+            {
+                int aux;
+                for(int i=1;i<10;i++)
+                {
+                    if(txvezes.getText().charAt(i) == '9')
+                    {
+                        lista[0] = i;
+                    }
+                    lista[i] = Integer.parseInt(txvezes.getText().charAt(i)+"");
+                    
+                    
+                }
+                labelvisitados.setText("");
+                labelTempo.setText("");
+                labelpasso.setText("");
+                atualizaTela(lista);    
+            }
         try {
                 Integer.parseInt(txvezes.getText());
                 
