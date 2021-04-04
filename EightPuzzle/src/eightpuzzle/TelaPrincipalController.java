@@ -160,12 +160,13 @@ public class TelaPrincipalController implements Initializable {
             finish = System.currentTimeMillis();
             labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
             passosLista = hillclimb.getResultadoCaminho();
-            lista = hillclimb.getResultado();
-            atualizaTela(lista);
+            
+            
 //            System.out.println(";");
             passosPosMax = passosPos = hillclimb.getProfundidade();
+            lista =  passosLista[passosPosMax-1].clone();
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-            
+            atualizaTela(lista);
             
         }
         
@@ -176,10 +177,15 @@ public class TelaPrincipalController implements Initializable {
         if(passosPos!= -1 && passosPos != 1)
         {
             passosPos--;
-            atualizaTela(passosLista[passosPos-1]);
+            
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
             
-        }   
+        }
+        if(passosPos!= -1)
+        {
+            atualizaTela(passosLista[passosPos-1]);
+            lista = passosLista[passosPos-1];
+        }
     }
 
     @FXML
@@ -188,8 +194,13 @@ public class TelaPrincipalController implements Initializable {
         {
             
             passosPos++;
-            atualizaTela(passosLista[passosPos-1]);
+            
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
+        }
+        if(passosPos!= -1)
+        {
+            atualizaTela(passosLista[passosPos-1]);
+            lista = passosLista[passosPos-1];
         }
     }
 
