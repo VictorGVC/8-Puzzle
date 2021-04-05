@@ -68,7 +68,45 @@ public class Transformacoes {
 
         return imagemLista;  
     }
-    
+    public static ArrayList RecortarCinza(Image img)
+    {
+        ArrayList imagemLista = new ArrayList();
+        BufferedImage bimage;
+        BufferedImage cimage;
+        
+        Image recorte;
+        double height = img.getHeight()/3,width = img.getWidth()/3;
+        cimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
+        BufferedImage dimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
+
+        int a=0,b=0;
+        bimage = SwingFXUtils.fromFXImage(img,null);
+        WritableRaster raster = bimage.getRaster();
+        for(int k=0; k < 9; k++)
+        {
+            WritableRaster rasterC = cimage.getRaster();
+            int[] pixel = {0, 0, 0, 0};
+            for(int i = 0;i < height;i++)
+            {
+                for(int j = 0;j < width;j++)
+                {
+                    raster.getPixel((int) (j+(width*b)), (int) (i+(height*a)), pixel);
+                    rasterC.setPixel(j,i,pixel);
+                }
+            }
+            b++;
+            if(b == 3)
+            {
+                b=0;
+                a++;
+            }  
+            imagemLista.add(tonsCinza(cimage,(int)height,(int)width));
+            cimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
+  
+        }
+
+        return imagemLista;  
+    }
     private  static WritableImage tonsCinza(BufferedImage bimage,int height,int width)
     {
       

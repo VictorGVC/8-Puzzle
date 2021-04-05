@@ -26,6 +26,7 @@ public class TelaPrincipalController implements Initializable {
     private long start,finish;
     private int lista[];
     private ArrayList imagemLista;
+    private ArrayList imagemFundoCinza;
     private int passosLista[][];
     private int passosPos,passosPosMax;
     static public File arq = null;
@@ -90,6 +91,7 @@ public class TelaPrincipalController implements Initializable {
             arquivo = arq;
             img = new Image(arq.toURI().toString());
             System.out.println(arq.toURI().toString());
+            imagemFundoCinza = Transformacoes.RecortarCinza(img);
             imagemLista = Transformacoes.Recortar(img);
             atualizaTela(lista);
             labelTempo.setText("");
@@ -142,8 +144,12 @@ public class TelaPrincipalController implements Initializable {
         for(int i=1;i<=9;i++)
         {
             gpimage.getChildren().get(i-1).setVisible(true);
+            
             imageview = (ImageView)gpimage.getChildren().get(i-1);
-            imageview.setImage((Image)imagemLista.get(lista[i]-1));
+            if(lista[i] == 9)
+                imageview.setImage((Image)imagemFundoCinza.get(i-1));
+            else
+                imageview.setImage((Image)imagemLista.get(lista[i]-1));
             imageview.setFitWidth(60);
             imageview.setFitHeight(60);
         }
