@@ -146,10 +146,10 @@ public class TelaPrincipalController implements Initializable {
             gpimage.getChildren().get(i-1).setVisible(true);
             
             imageview = (ImageView)gpimage.getChildren().get(i-1);
-            if(lista[i] == 9)
+            /*if(lista[i] == 9)
                 imageview.setImage((Image)imagemFundoCinza.get(i-1));
-            else
-                imageview.setImage((Image)imagemLista.get(lista[i]-1));
+            else*/
+            imageview.setImage((Image)imagemLista.get(lista[i]-1));
             imageview.setFitWidth(60);
             imageview.setFitHeight(60);
         }
