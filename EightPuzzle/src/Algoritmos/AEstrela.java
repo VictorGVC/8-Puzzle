@@ -76,7 +76,6 @@ public class AEstrela {
             }
             else
             {
-                System.out.println("FIM");
                 finished = true;
                 calculaCaminhoSolucao(nodo.getCaminho());
             }

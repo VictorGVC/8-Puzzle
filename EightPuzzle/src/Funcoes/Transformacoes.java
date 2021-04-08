@@ -325,9 +325,9 @@ public class Transformacoes {
                 case 8:
                     soma += Math.abs(j-2)+Math.abs(k-1);
                 break;
-                case 9:
+                /*case 9:
                     soma += Math.abs(j-2)+Math.abs(k-2);
-                break;
+                break;*/
                 
             }
             

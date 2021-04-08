@@ -19,12 +19,13 @@ public class HillClimb {
     private List<Nodo> resultadoCaminho;
     private int profundidade;
     private int passos;
-    
+    private List<int[]>listavisitados;
     public HillClimb(int lista[])
     {
         passos = 1;
         this.inicio = new Nodo(lista);
         inicio.setValor(calculaDistancia(inicio));
+        listavisitados = new ArrayList();
     }
 
     public int getPassos() {
@@ -46,23 +47,25 @@ public class HillClimb {
     private Nodo hillClimb(Nodo lanterior, Nodo atual,int auxprof,List<Nodo> resultadoCaminhoAux)
     {
         Nodo result = atual;
-        List<Integer> del = new ArrayList();
+        List<Nodo> del = new ArrayList();
         List<Nodo> caminhos = getCaminhos(atual);
         passos += caminhos.size();
         resultadoCaminhoAux.add(atual);
-        int i = 0;
-        caminhos.sort(Comparator.comparing(Nodo::getValor));
+        int i =0;
+        listavisitados.add(atual.getLista());
+       
         for (Nodo caminho : caminhos) 
         {
             caminho.setValor(calculaDistancia(caminho));
-            if(atual.getValor() <= caminho.getValor() || caminho.getLista() == lanterior.getLista())
-                del.add(i);
-            i++;
+            if(contem(caminho.getLista()))
+                del.add(caminho);
+            
+            
         }
-        del.sort(Comparator.reverseOrder());
-        for (int d : del) 
-            caminhos.remove(d);
         
+        for (Nodo d : del) 
+           caminhos.remove(d);
+        caminhos.sort(Comparator.comparing(Nodo::getValor));
         boolean b = true;
         for (int j = 0; j < caminhos.size() && b; j++) 
         {
@@ -150,6 +153,22 @@ public class HillClimb {
         }
         
         return soma;
+    }
+    private boolean contem(int[] vetor)
+    {
+        int i;
+        boolean temp;
+        for(int[] comp : listavisitados)
+        {
+            i=0;
+            
+            while(i<10 && comp[i] == vetor[i])i++;
+            
+            temp = i == 10;
+            if(temp)
+                return true;
+        }
+        return false;
     }
     private static List<Nodo> getCaminhos(Nodo n)
     {
