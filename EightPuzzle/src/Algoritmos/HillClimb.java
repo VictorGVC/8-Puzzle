@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Algoritmos;
 
 import ClassesControle.Nodo;
@@ -10,16 +5,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- *
- * @author Heitor
- */
 public class HillClimb {
+    
     private Nodo inicio;
     private List<Nodo> resultadoCaminho;
     private int profundidade;
     private int passos;
     private List<int[]>listavisitados;
+    
     public HillClimb(int lista[])
     {
         passos = 1;
@@ -44,6 +37,7 @@ public class HillClimb {
             //Mensagem de erro
         }
     }
+    
     private Nodo hillClimb(Nodo lanterior, Nodo atual,int auxprof,List<Nodo> resultadoCaminhoAux)
     {
         Nodo result = atual;
@@ -51,7 +45,7 @@ public class HillClimb {
         List<Nodo> caminhos = getCaminhos(atual);
         passos += caminhos.size();
         resultadoCaminhoAux.add(atual);
-        int i =0;
+        int i = 0;
         listavisitados.add(atual.getLista());
        
         for (Nodo caminho : caminhos) 
@@ -59,14 +53,13 @@ public class HillClimb {
             caminho.setValor(calculaDistancia(caminho));
             if(contem(caminho.getLista()))
                 del.add(caminho);
-            
-            
         }
         
         for (Nodo d : del) 
            caminhos.remove(d);
         caminhos.sort(Comparator.comparing(Nodo::getValor));
         boolean b = true;
+        
         for (int j = 0; j < caminhos.size() && b; j++) 
         {
             if(caminhos.get(j).getValor()==0)
@@ -88,30 +81,23 @@ public class HillClimb {
                     //resultadoCaminhoAux.add(result);
                 }
                 else
-                {
                     resultadoCaminhoAux.remove(resultadoCaminhoAux.size()-1);
-                }
             }
         }
         if(resultadoCaminho == null)
-        {
             resultadoCaminho = resultadoCaminhoAux;
-        }
         else if(resultadoCaminho.get(resultadoCaminho.size()-1).getValor() > resultadoCaminhoAux.get(resultadoCaminhoAux.size()-1).getValor())
-        {
             resultadoCaminho = resultadoCaminhoAux;
-        }
             
         if(!b)
-        {
             resultadoCaminho = resultadoCaminhoAux;
-        }
         
         return result;
     }
+    
     private int calculaDistancia(Nodo n)
     {
-        int soma = 0,j=0,k=0;
+        int soma = 0, j = 0, k = 0;
         
         for (int i = 1; i < 10; i++) 
         {    
@@ -140,12 +126,11 @@ public class HillClimb {
                 break;
                 case 8:
                     soma += Math.abs(j-2)+Math.abs(k-1);
-                break;
-                
+                break; 
             }
             
             k++;
-            if(k==3)
+            if(k == 3)
             {
                 k = 0;
                 j++;
@@ -154,14 +139,14 @@ public class HillClimb {
         
         return soma;
     }
+    
     private boolean contem(int[] vetor)
     {
         int i;
         boolean temp;
         for(int[] comp : listavisitados)
         {
-            i=0;
-            
+            i = 0;
             while(i<10 && comp[i] == vetor[i])i++;
             
             temp = i == 10;
@@ -170,6 +155,7 @@ public class HillClimb {
         }
         return false;
     }
+    
     private static List<Nodo> getCaminhos(Nodo n)
     {
         List<Nodo> caminhos = new ArrayList();
@@ -219,8 +205,10 @@ public class HillClimb {
                     caminhos.add(new Nodo(fazerMovimento(n.getLista(),8)));
                     break;
         }
+        
         return caminhos;
     }
+    
     private static int[] fazerMovimento(int lista[],int pos)
     { 
         int aux;
@@ -243,14 +231,17 @@ public class HillClimb {
     }
 
     public int[][] getResultadoCaminho() {
+        
         int[] caminho[] = new int[profundidade][];
         
-        for(int i =0;i<profundidade;i++)
+        for(int i = 0; i < profundidade; i++)
         {
             caminho[i] = resultadoCaminho.get(i).getLista();
         }
+        
         return caminho;
     }
+    
     public int[] getPosResultadoCaminho(int j)
     {
         return resultadoCaminho.get(j).getLista();
@@ -263,9 +254,9 @@ public class HillClimb {
     public void setProfundidade(int profundidade) {
         this.profundidade = profundidade;
     }
+    
     public int[] getResultado()
     {
         return resultadoCaminho.get(resultadoCaminho.size()-1).getLista();
     }
 }
-

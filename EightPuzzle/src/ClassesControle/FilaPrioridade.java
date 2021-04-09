@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClassesControle;
 
-/**
- *
- * @author Heitor
- */
 public class FilaPrioridade {
+    
     FilaNo inicio;
     FilaNo fim;
+    
     public FilaPrioridade()
     {
         inicio = fim = null;
     }
+    
     public void adicionar(Nodo nodo)
     {
         FilaNo filano = new FilaNo(nodo,nodo.getValor());
@@ -24,7 +18,6 @@ public class FilaPrioridade {
             filano.setAnt(null);
             filano.setProx(null);
             inicio = fim = filano;
-            
         }
         else
         {
@@ -38,8 +31,7 @@ public class FilaPrioridade {
                 filano.setAnt(null);
                 filano.setProx(inicio);
                 inicio.setAnt(filano);
-                inicio = filano;
-                
+                inicio = filano; 
             }
             else
             {
@@ -52,7 +44,6 @@ public class FilaPrioridade {
                 }
                 else
                 {
-                    
                     filano.setAnt(aux);
                     filano.setProx(aux.getProx());
                     aux.setProx(filano);
@@ -61,6 +52,7 @@ public class FilaPrioridade {
             }
         }
     }
+    
     public Nodo remover()
     {
         Nodo aux = inicio.getNodo();
@@ -69,14 +61,13 @@ public class FilaPrioridade {
         if(inicio == null)
             fim = null;
         else
-        {
             inicio.setAnt(null);
-        }
+        
         return aux;
     }
+    
     public boolean isEmpty()
     {
         return inicio == null;
     }
-    
 }

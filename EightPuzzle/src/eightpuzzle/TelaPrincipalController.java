@@ -80,7 +80,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private void evtAbrir(ActionEvent event) {
         
-        FileChooser fc=new FileChooser();
+        FileChooser fc = new FileChooser();
         ImageView imageview = new ImageView();
         arq = fc.showOpenDialog(null);
         Image img;
@@ -102,46 +102,46 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     private void evtEmbaralhar(ActionEvent event) {
         
-            if(txvezes.getText().length()>1 && txvezes.getText().charAt(0) == '"')
+        if(txvezes.getText().length()>1 && txvezes.getText().charAt(0) == '"')
+        {
+            int aux;
+            for(int i = 1; i < 10; i++)
             {
-                int aux;
-                for(int i=1;i<10;i++)
+                if(txvezes.getText().charAt(i) == '9')
                 {
-                    if(txvezes.getText().charAt(i) == '9')
-                    {
-                        lista[0] = i;
-                    }
-                    lista[i] = Integer.parseInt(txvezes.getText().charAt(i)+"");
-                    
-                    
+                    lista[0] = i;
                 }
+                lista[i] = Integer.parseInt(txvezes.getText().charAt(i)+"");
+            }
+            labelvisitados.setText("");
+            labelTempo.setText("");
+            labelpasso.setText("");
+            atualizaTela(lista);    
+        }
+        try {
+            
+            Integer.parseInt(txvezes.getText());
+
+            if(imagemLista != null && !imagemLista.isEmpty())
+            {
                 labelvisitados.setText("");
                 labelTempo.setText("");
                 labelpasso.setText("");
-                atualizaTela(lista);    
-            }
-        try {
-                Integer.parseInt(txvezes.getText());
-                
-                if(imagemLista != null && !imagemLista.isEmpty())
-                {
-                    labelvisitados.setText("");
-                    labelTempo.setText("");
-                    labelpasso.setText("");
-                    lista = Funcoes.Transformacoes.Embaralhar(Integer.parseInt(txvezes.getText()));
+                lista = Funcoes.Transformacoes.Embaralhar(Integer.parseInt(txvezes.getText()));
 
-                    atualizaTela(lista);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("aoo deu aí em, coloca um numero!");
+                atualizaTela(lista);
             }
+        } catch (NumberFormatException e) {
+            System.out.println("aoo deu aí em, coloca um numero!");
+        }
         
     }
     
     private void atualizaTela(int lista[]) {
         
         ImageView imageview = new ImageView();
-        for(int i=1;i<=9;i++)
+        
+        for(int i = 1; i <= 9; i++)
         {
             gpimage.getChildren().get(i-1).setVisible(true);
             
@@ -152,8 +152,7 @@ public class TelaPrincipalController implements Initializable {
             imageview.setImage((Image)imagemLista.get(lista[i]-1));
             imageview.setFitWidth(60);
             imageview.setFitHeight(60);
-        }
-        
+        }    
     }
     
     @FXML
@@ -163,6 +162,7 @@ public class TelaPrincipalController implements Initializable {
     }
         
     private void reiniciaTela() {
+        
         labelvisitados.setText("");
         labelTempo.setText("");
         labelpasso.setText("");
@@ -176,8 +176,8 @@ public class TelaPrincipalController implements Initializable {
         
         if(rbAlg1.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
         {
-            
             HillClimb hillclimb = new HillClimb(lista);
+            
             start = System.currentTimeMillis();
             hillclimb.resolver();
             finish = System.currentTimeMillis();
@@ -185,21 +185,22 @@ public class TelaPrincipalController implements Initializable {
             passosLista = hillclimb.getResultadoCaminho();
             labelvisitados.setText("Visitados: "+hillclimb.getPassos());
             
-//            System.out.println(";");
+            //System.out.println(";");
             passosPosMax = passosPos = hillclimb.getProfundidade();
             lista =  passosLista[passosPosMax-1].clone();
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-            atualizaTela(lista);
-            
+            atualizaTela(lista); 
         }
         if(rbAlg2.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
         {
             AEstrela estrela = new AEstrela(lista);
+            
             start = System.currentTimeMillis();
             estrela.resolver();
             finish = System.currentTimeMillis();
             labelTempo.setText("Tempo: "+(double)(finish-start)/1000+"s");
             labelvisitados.setText("Visitados: "+estrela.getNumVisitados());
+            
             passosLista = estrela.getResultadoCaminho();
             passosPosMax = passosPos = estrela.getProfundidade();
             lista = passosLista[passosPosMax-1].clone();
@@ -210,14 +211,13 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtPassoAtras(ActionEvent event) {
-        if(passosPos!= -1 && passosPos > 1)
+        
+        if(passosPos != -1 && passosPos > 1)
         {
-            passosPos--;
-            
-            labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
-            
+            passosPos--;  
+            labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );    
         }
-        if(passosPos!= -1)
+        if(passosPos != -1)
         {
             atualizaTela(passosLista[passosPos-1]);
             lista = passosLista[passosPos-1];
@@ -230,7 +230,6 @@ public class TelaPrincipalController implements Initializable {
         if(passosPos != -1 && passosPos < passosPosMax)
         {
             passosPos++;
-            
             labelpasso.setText("Passo "+passosPos + " de "+ passosPosMax );
         }
         if(passosPos!= -1)
@@ -242,7 +241,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar1(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 1;
@@ -259,7 +259,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar2(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 2;
@@ -276,7 +277,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar3(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 3;
@@ -293,7 +295,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar4(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 4;
@@ -310,7 +313,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar5(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 5;
@@ -327,7 +331,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar6(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 6;
@@ -344,7 +349,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar7(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 7;
@@ -361,7 +367,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar8(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 8;
@@ -378,7 +385,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private void evtJogar22(MouseEvent event) {
-        if(imagemLista!=null && !imagemLista.isEmpty())
+        
+        if(imagemLista != null && !imagemLista.isEmpty())
         {
             int vazia = lista[0];
             int K = 9;
@@ -393,6 +401,3 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 }
-
-    
-

@@ -1,26 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Funcoes;
 
 import ClassesControle.Nodo;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.util.ArrayList;
-import java.util.Collections;
-import static java.util.Collections.sort;
 import java.util.Comparator;
 import java.util.List;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
-/**
- *
- * @author Heitor
- */
 public class Transformacoes {
     
     public static ArrayList Recortar(Image img)
@@ -34,16 +23,16 @@ public class Transformacoes {
         cimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
         BufferedImage dimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
 
-        int a=0,b=0;
+        int a = 0,b = 0;
         bimage = SwingFXUtils.fromFXImage(img,null);
         WritableRaster raster = bimage.getRaster();
-        for(int k=0; k < 9; k++)
+        for(int k = 0; k < 9; k++)
         {
             WritableRaster rasterC = cimage.getRaster();
             int[] pixel = {0, 0, 0, 0};
-            for(int i = 0;i < height;i++)
+            for(int i = 0; i < height; i++)
             {
-                for(int j = 0;j < width;j++)
+                for(int j = 0; j < width; j++)
                 {
                     raster.getPixel((int) (j+(width*b)), (int) (i+(height*a)), pixel);
                     rasterC.setPixel(j,i,pixel);
@@ -52,22 +41,19 @@ public class Transformacoes {
             b++;
             if(b == 3)
             {
-                b=0;
+                b = 0;
                 a++;
             }
             if(a == 3)
-            {
-                
                 imagemLista.add(tonsCinza(cimage,(int)height,(int)width));
-            }
             else   
                 imagemLista.add(SwingFXUtils.toFXImage(cimage, null));
             cimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
-  
         }
 
         return imagemLista;  
     }
+    
     public static ArrayList RecortarCinza(Image img)
     {
         ArrayList imagemLista = new ArrayList();
@@ -79,10 +65,10 @@ public class Transformacoes {
         cimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
         BufferedImage dimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
 
-        int a=0,b=0;
+        int a = 0,b = 0;
         bimage = SwingFXUtils.fromFXImage(img,null);
         WritableRaster raster = bimage.getRaster();
-        for(int k=0; k < 9; k++)
+        for(int k = 0; k < 9; k++)
         {
             WritableRaster rasterC = cimage.getRaster();
             int[] pixel = {0, 0, 0, 0};
@@ -97,19 +83,18 @@ public class Transformacoes {
             b++;
             if(b == 3)
             {
-                b=0;
+                b = 0;
                 a++;
             }  
             imagemLista.add(tonsCinza(cimage,(int)height,(int)width));
             cimage = new BufferedImage((int)width+1,(int)height+1,BufferedImage.TYPE_INT_RGB);
-  
         }
 
         return imagemLista;  
     }
-    private  static WritableImage tonsCinza(BufferedImage bimage,int height,int width)
+    
+    private static WritableImage tonsCinza(BufferedImage bimage, int height, int width)
     {
-      
         WritableRaster raster = bimage.getRaster();
         int[] pixel = {0, 0, 0, 0};
         int cinza;
@@ -124,23 +109,28 @@ public class Transformacoes {
                 raster.setPixel(j, i, pixel);
             }
         }
+        
         return SwingFXUtils.toFXImage(bimage, null);
     }
+    
     public static int[] Embaralhar(int movimentos){
+        
         int lista[] = {9,1,2,3,4,5,6,7,8,9};
-        for(int i =0;i<movimentos;i++)
-        {
+        
+        for(int i = 0; i < movimentos; i++)
             lista = fazerMovimentoAleatorio(lista);
-        }
         
-        return lista;
-        
+        return lista; 
     }
-    private static int[] fazerMovimentoAleatorio(int lista[]){ 
+    
+    private static int[] fazerMovimentoAleatorio(int lista[]) { 
+        
         int vazia = lista[0];
         int aux;
         int random;
-        switch(vazia){
+        
+        switch(vazia) {
+            
             case 1:
                     random = (int)(Math.random()*2)%2 + 1;
                     aux = lista[vazia];
@@ -156,7 +146,6 @@ public class Transformacoes {
                    lista[0] = random*2+1;
                    break;
             case 3:
-                    
                     random = (int)(Math.random()*2)%2;
                     aux = lista[vazia];
                     lista[vazia] = lista[random*4+2];
@@ -178,7 +167,6 @@ public class Transformacoes {
                         lista[random*2+3] = aux;
                         lista[0] = random*2+3;
                     }
-
                     break;
             case 5:
                     random = (int)(Math.random()*4)%4;
@@ -278,24 +266,23 @@ public class Transformacoes {
                     caminhos.add(new Nodo(fazerMovimento(n.getLista(),8)));
                     break;
         }
+        
         return caminhos;
     }
     public static int calculaPos(Nodo n)
     {
         int soma =0;
         
-        
-        
-        for(int i= 1;i<=9;i++)
-        {
+        for(int i = 1; i <= 9; i++)
             if(n.getLista()[i] != i)
                 soma++;
-        }
+        
         return soma;
     }
+    
     public static int calculaDistancia(Nodo n)
     {
-        int soma = 0,j=0,k=0;
+        int soma = 0, j = 0, k = 0;
         
         for (int i = 1; i < 10; i++) 
         {    
@@ -327,12 +314,11 @@ public class Transformacoes {
                 break;
                 /*case 9:
                     soma += Math.abs(j-2)+Math.abs(k-2);
-                break;*/
-                
+                break;*/         
             }
             
             k++;
-            if(k==3)
+            if(k == 3)
             {
                 k = 0;
                 j++;
@@ -362,11 +348,11 @@ public class Transformacoes {
             caminhos.remove(d);
         
         boolean b = true;
+        
         for (int j = 0; j < caminhos.size() && b; j++) 
         {
             if(caminhos.get(j).getValor()==0)
             {
-                
                 result = caminhos.get(j);
                 b = false;
             }
@@ -387,7 +373,6 @@ public class Transformacoes {
     {
         Nodo atual = new Nodo(lista);
         //atual.setLista(lista);
-        
         
         int []result = new int[10];
         atual.setValor(calculaDistancia(atual));
