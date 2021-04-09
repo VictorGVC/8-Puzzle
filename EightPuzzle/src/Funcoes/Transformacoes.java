@@ -280,55 +280,24 @@ public class Transformacoes {
         return soma;
     }
     
-    public static int calculaDistancia(Nodo n)
+    public static int calculaDistancia(Nodo n,int[] dest)
     {
-        int soma = 0, j = 0, k = 0;
+        int soma = 0, j = 0, valor = 0;
+        int[] atual = n.getLista();
         
         for (int i = 1; i < 10; i++) 
-        {    
-            switch(n.getLista()[i])
-            {
-                case 1:
-                    soma += j+k;
-                break;
-                case 2:
-                    soma += j+Math.abs(k-1);
-                break;
-                case 3:
-                    soma += j+Math.abs(k-2);
-                break;
-                case 4:
-                    soma += Math.abs(j-1)+k;
-                break;
-                case 5:
-                    soma += Math.abs(j-1)+Math.abs(k-1);
-                break;
-                case 6:
-                    soma += Math.abs(j-1)+Math.abs(k-2);
-                break;
-                case 7:
-                    soma += Math.abs(j-2)+k;
-                break;
-                case 8:
-                    soma += Math.abs(j-2)+Math.abs(k-1);
-                break;
-                /*case 9:
-                    soma += Math.abs(j-2)+Math.abs(k-2);
-                break;*/         
-            }
-            
-            k++;
-            if(k == 3)
-            {
-                k = 0;
+        {
+            j=1;
+            valor = atual[i];
+            while(valor != dest[j])//1+2+3+4+5+6+7+8+9
                 j++;
-            }
+            if(i != 9)
+                soma+=Math.abs((i-1)%3 - (j-1)%3) + Math.abs(i/3 - j/3);
         }
-        
         return soma;
     }
-    
-    private static Nodo hillClimb(Nodo lanterior, Nodo atual,int profundidade[],int[] passoslista[])
+    //162973548
+   /* private static Nodo hillClimb(Nodo lanterior, Nodo atual,int profundidade[],int[] passoslista[])
     {
         Nodo result = new Nodo();
         List<Integer> del = new ArrayList();
@@ -369,7 +338,7 @@ public class Transformacoes {
         return result;
     }
     
-    public static int[] hillClimb(int lista[],int profundidade[],int[] passoslista[])
+   /* public static int[] hillClimb(int lista[],int profundidade[],int[] passoslista[])
     {
         Nodo atual = new Nodo(lista);
         //atual.setLista(lista);
@@ -381,7 +350,7 @@ public class Transformacoes {
         
         return result;
     }
-    
+    */
     private static int[] fazerMovimento(int lista[],int pos)
     { 
         int aux;

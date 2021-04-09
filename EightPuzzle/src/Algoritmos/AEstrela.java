@@ -14,17 +14,19 @@ public class AEstrela {
     private List<Nodo> visitados;//lista dos nodos já visitados
     private List<int[]> listavisitados;
     private Nodo inicial;
-    
-    public AEstrela(int[] lista)
+    private int[] dest;
+    public AEstrela(int[] lista,int[] dest)
     {
         fp = new FilaPrioridade();
         inicial = new Nodo(lista);
-        inicial.setValor(Transformacoes.calculaDistancia(inicial)+1);
+        this.dest = dest;
+        inicial.setValor(Transformacoes.calculaDistancia(inicial,dest)+1);
         //fp.adicionar(inicial);
         visitados = new ArrayList();
         resultadoCaminho = new ArrayList();
         listavisitados = new ArrayList();
         numvisitados = 0;
+        
     }
     
     public void resolver()
@@ -55,7 +57,7 @@ public class AEstrela {
                     if(!contem(n.getLista()))
                     {
                         n.setCaminho(nodo.getCaminho());
-                        n.setValor(Transformacoes.calculaDistancia(n)+n.getCaminho().size()+1);
+                        n.setValor(Transformacoes.calculaDistancia(n,dest)+n.getCaminho().size()+1);
                         n.adicionaCaminho(visitados.size());
                         visitados.add(n);
                         listavisitados.add(n.getLista());

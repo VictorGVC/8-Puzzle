@@ -175,10 +175,25 @@ public class TelaPrincipalController implements Initializable {
     
     @FXML
     private void evtResolver(ActionEvent event) {
-        
+        int[] dest = new int[10];
+        if(txestadofinal.getText().isEmpty())
+        {
+            dest = new int[]{9,1,2,3,4,5,6,7,8,9};
+        }
+        else
+        {
+            for(int i=1;i<10;i++)
+            {
+                dest[i] = Integer.parseInt(txestadofinal.getText().charAt(i-1)+"");
+                if(dest[i] == 9)
+                {
+                    dest[0] = i;
+                }
+            }
+        }
         if(rbAlg1.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
         {
-            HillClimb hillclimb = new HillClimb(lista);
+            HillClimb hillclimb = new HillClimb(lista,dest);
             
             start = System.currentTimeMillis();
             hillclimb.resolver();
@@ -195,7 +210,7 @@ public class TelaPrincipalController implements Initializable {
         }
         if(rbAlg2.isSelected() && imagemLista != null &&!imagemLista.isEmpty())
         {
-            AEstrela estrela = new AEstrela(lista);
+            AEstrela estrela = new AEstrela(lista,dest);
             
             start = System.currentTimeMillis();
             estrela.resolver();

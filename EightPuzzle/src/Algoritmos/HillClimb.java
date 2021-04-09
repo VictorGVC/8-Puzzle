@@ -1,6 +1,7 @@
 package Algoritmos;
 
 import ClassesControle.Nodo;
+import Funcoes.Transformacoes;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,12 +13,13 @@ public class HillClimb {
     private int profundidade;
     private int passos;
     private List<int[]>listavisitados;
-    
-    public HillClimb(int lista[])
+    private int[] dest;
+    public HillClimb(int lista[],int dest[])
     {
+        this.dest = dest;
         passos = 1;
         this.inicio = new Nodo(lista);
-        inicio.setValor(calculaDistancia(inicio));
+        inicio.setValor(Transformacoes.calculaDistancia(inicio,dest));
         listavisitados = new ArrayList();
     }
 
@@ -50,7 +52,7 @@ public class HillClimb {
        
         for (Nodo caminho : caminhos) 
         {
-            caminho.setValor(calculaDistancia(caminho));
+            caminho.setValor(Transformacoes.calculaDistancia(caminho,dest));
             if(contem(caminho.getLista()))
                 del.add(caminho);
         }
