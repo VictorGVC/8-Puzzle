@@ -77,12 +77,12 @@
                               <Font name="Georgia" size="18.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="98.0" layoutY="317.0" onAction="#evtPassoAtras" text="&lt;-" AnchorPane.leftAnchor="98.0">
+                        <JFXButton buttonType="RAISED" layoutX="98.0" layoutY="317.0" onAction="#evtPassoAtras" text="&lt;-" AnchorPane.leftAnchor="98.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="168.0" layoutY="317.0" onAction="#evtPassoFrente" text="-&gt;" AnchorPane.rightAnchor="104.0">
+                        <JFXButton buttonType="RAISED" layoutX="168.0" layoutY="317.0" onAction="#evtPassoFrente" text="-&gt;" AnchorPane.rightAnchor="104.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -109,11 +109,12 @@
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="416.0" spacing="20.0" styleClass="forth">
                <children>
                   <JFXTextField fx:id="txvezes" labelFloat="true" maxWidth="79.0" prefHeight="25.0" prefWidth="79.0" promptText="Nº vezes" text="25" />
-                  <JFXButton fx:id="btEmbaralhar" onAction="#evtEmbaralhar" prefWidth="80.0" text="Embaralhar" />
-                  <JFXButton fx:id="evtResolver" onAction="#evtResolver" prefWidth="80.0" text="Resolver">
+                  <JFXButton fx:id="btEmbaralhar" buttonType="RAISED" onAction="#evtEmbaralhar" prefWidth="80.0" text="Embaralhar" />
+                  <JFXButton fx:id="evtResolver" buttonType="RAISED" onAction="#evtResolver" prefWidth="80.0" text="Resolver">
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets bottom="10.0" top="40.0" />
                      </VBox.margin></JFXButton>
+                  <JFXTextField fx:id="txestadofinal" labelFloat="true" maxWidth="79.0" prefHeight="25.0" prefWidth="0.0" promptText="resultado" text="123456789" />
                </children>
             </VBox>
          </children>

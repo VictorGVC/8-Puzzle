@@ -70,6 +70,8 @@ public class TelaPrincipalController implements Initializable {
     private Label labelvisitados;
     @FXML
     private JFXTextField txvezes;
+    @FXML
+    private JFXTextField txestadofinal;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
